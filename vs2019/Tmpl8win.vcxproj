@@ -47,7 +47,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>.;glad\include;..\app\src\main\cpp;glfw/include;glad/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;glad\include;..\app\src\main\cpp;glfw/include;glad/include;..\app\src\lib\soloud\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>precomp.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
@@ -70,7 +70,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <ClCompile>
       <!-- NOTE: Only Release-x64 has WIN64 defined... -->
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WITH_WINMM;WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <MinimalRebuild>false</MinimalRebuild>
@@ -113,12 +113,76 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PreprocessorDefinitions>WIN64;NDEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WITH_WINMM;WIN64;NDEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <!-- END Custom section -->
   <ItemGroup>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\monotone\soloud_monotone.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\noise\soloud_noise.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\openmpt\soloud_openmpt.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\openmpt\soloud_openmpt_dll.c" />
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\sfxr\soloud_sfxr.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\speech\darray.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\speech\klatt.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\speech\resonator.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\speech\soloud_speech.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\speech\tts.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\tedsid\sid.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\tedsid\soloud_tedsid.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\tedsid\ted.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\vic\soloud_vic.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\vizsn\soloud_vizsn.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\wav\dr_impl.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\wav\soloud_wav.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\wav\soloud_wavstream.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\wav\stb_vorbis.c" />
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\alsa\soloud_alsa.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\coreaudio\soloud_coreaudio.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\jack\soloud_jack.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\miniaudio\soloud_miniaudio.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\nosound\soloud_nosound.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\null\soloud_null.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\openal\soloud_openal.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\openal\soloud_openal_dll.c" />
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\opensles\soloud_opensles.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\oss\soloud_oss.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\portaudio\soloud_portaudio.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\portaudio\soloud_portaudio_dll.c" />
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\wasapi\soloud_wasapi.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\winmm\soloud_winmm.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\xaudio2\soloud_xaudio2.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_audiosource.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_bus.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_core_3d.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_core_basicops.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_core_faderops.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_core_filterops.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_core_getters.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_core_setters.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_core_voicegroup.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_core_voiceops.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_fader.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_fft.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_fft_lut.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_file.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_filter.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_misc.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_queue.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_thread.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\c_api\soloud_c.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_bassboostfilter.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_biquadresonantfilter.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_dcremovalfilter.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_echofilter.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_fftfilter.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_flangerfilter.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_freeverbfilter.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_lofifilter.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_robotizefilter.cpp" />
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_waveshaperfilter.cpp" />
     <ClCompile Include="..\app\src\main\cpp\game.cpp" />
     <ClCompile Include="..\app\src\main\cpp\template.cpp" />
   </ItemGroup>

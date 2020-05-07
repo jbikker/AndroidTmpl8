@@ -12,14 +12,12 @@ void Game::Init()
 	screen = Surface( 320, 192 );
 	pixels = CreateTexture( screen.buffer, 320, 192 );
 	shader = LoadShader();
-#ifndef _WIN64
 	// load a sound and play it
 	loud.init();
 	std::vector<unsigned char> buffer;
 	loadBinaryFile( buffer, "coin.wav" );
 	sound.loadMem( buffer.data(), (int)buffer.size(), true, true );
 	loud.play( sound );
-#endif
 	// load a png from the assets folder
 	bluePrint = new Surface( "blueprint.png" );
 }

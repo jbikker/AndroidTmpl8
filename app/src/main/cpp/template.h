@@ -105,12 +105,8 @@ public:
 	int width = 0, height = 0;
 };
 
-#ifndef _WIN64
-
 #include "soloud.h"
 #include "soloud_wav.h"
-
-#endif
 
 #include "game.h"
 

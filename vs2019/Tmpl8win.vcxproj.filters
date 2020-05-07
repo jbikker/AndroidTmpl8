@@ -5,6 +5,198 @@
     <ClCompile Include="..\app\src\main\cpp\template.cpp">
       <Filter>template code</Filter>
     </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\monotone\soloud_monotone.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\noise\soloud_noise.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\openmpt\soloud_openmpt.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\openmpt\soloud_openmpt_dll.c">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\sfxr\soloud_sfxr.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\speech\darray.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\speech\klatt.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\speech\resonator.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\speech\soloud_speech.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\speech\tts.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\tedsid\sid.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\tedsid\soloud_tedsid.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\tedsid\ted.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\vic\soloud_vic.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\vizsn\soloud_vizsn.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\wav\dr_impl.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\wav\soloud_wav.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\wav\soloud_wavstream.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\audiosource\wav\stb_vorbis.c">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\alsa\soloud_alsa.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\coreaudio\soloud_coreaudio.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\jack\soloud_jack.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\miniaudio\soloud_miniaudio.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\nosound\soloud_nosound.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\null\soloud_null.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\openal\soloud_openal.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\openal\soloud_openal_dll.c">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\opensles\soloud_opensles.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\oss\soloud_oss.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\portaudio\soloud_portaudio.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\portaudio\soloud_portaudio_dll.c">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\wasapi\soloud_wasapi.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\winmm\soloud_winmm.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\backend\xaudio2\soloud_xaudio2.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\c_api\soloud_c.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_audiosource.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_bus.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_core_3d.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_core_basicops.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_core_faderops.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_core_filterops.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_core_getters.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_core_setters.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_core_voicegroup.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_core_voiceops.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_fader.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_fft.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_fft_lut.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_file.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_filter.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_misc.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_queue.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\core\soloud_thread.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_bassboostfilter.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_biquadresonantfilter.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_dcremovalfilter.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_echofilter.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_fftfilter.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_flangerfilter.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_freeverbfilter.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_lofifilter.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_robotizefilter.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_waveshaperfilter.cpp">
+      <Filter>template code\soloud</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\app\src\main\cpp\game.h" />
@@ -15,6 +207,9 @@
   <ItemGroup>
     <Filter Include="template code">
       <UniqueIdentifier>{bf32dd6e-4be7-4889-8ac6-49e7ee163c40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="template code\soloud">
+      <UniqueIdentifier>{fffa2901-1398-482b-8351-45c3e8a72d18}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

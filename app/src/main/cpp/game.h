@@ -18,10 +18,8 @@ private:
 	int scrwidth = 1, scrheight = 1;
 	Surface screen;
 	GLuint pixels = -1, shader = -1;
-#ifndef _WIN64
-	SoLoud::Soloud loud = 0;
-	SoLoud::Wav sound = 0;
-#endif
+	SoLoud::Soloud loud;
+	SoLoud::Wav sound;
 	Surface* bluePrint = 0;
 };
 
