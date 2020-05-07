@@ -1,0 +1,2 @@
+rootProject.name='Tmpl8App'
+include ':app'

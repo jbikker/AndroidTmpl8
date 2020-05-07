@@ -1,0 +1,79 @@
+This document describes various common challenges that you may encounter
+while developing a native C/C++ application for Android. Index:
+
+1. Cleaning the project directory to the bare minimum
+2. Add additional source / header files to the project
+3. Add additional assets to the project
+4. Renaming the project / apk
+5. Changing the application icon
+6. Creating a signed 'release' apk
+
+------------------------------------------------------------------------
+
+1. CLEANING THE PROJECT DIRECTORY
+
+After cleaning the project directory, it will contain the smallest
+set of files that will still correctly build in Android Studio. 
+
+- This set is the set that should be checked in to SVN or Git. 
+- It is also the perfect starting point for renaming the project.
+
+Android Studio lets you 'clean' your folder. However, using the
+following steps, a much smaller set of files is obtained:
+
+- Close down Android Studio.
+- Clean the project directory by executing clean.bat.
+- Open the project directory in Android Studio.
+
+The last step results in a warning about Gradle. Press OK to restore the
+gradle folder; after this the project will build without problems.
+
+------------------------------------------------------------------------
+
+2. Add additional source / header files to the project
+
+Under construction.
+
+------------------------------------------------------------------------
+
+3. ADDING ASSETS
+
+In the folder app/src/main you can find a folder named 'assets'. Add
+any files you wish to include in your apk to this folder. Note that the
+template currently supports loading png files using the picopng code in
+template.cpp, and wav files via the included 'soloud' library.
+
+------------------------------------------------------------------------
+
+3. RENAMING THE PROJECT
+
+Carefully execute each of the following steps to rename your project:
+
+- Close down Android Studio.
+- Clean the project directory by executing clean.bat.
+- Create a backup of the directory.
+- Rename the project directory to the desired name, e.g. 'MyProject'.
+- Replace the string 'Tmpl8App' by 'MyProject' in 5 files:
+
+settings.gradle
+app/build.gradle
+app/CMakeLists.txt
+app/src/main/AndroidManifest.xml
+app/src/main/res/values/strings.xml
+
+- Open the renamed folder in Android Studio.
+
+Optionally, uninstall the application with the old name on your
+device.
+
+------------------------------------------------------------------------
+
+4. CHANGING THE APPLICATION ICON
+
+Under construction.
+
+------------------------------------------------------------------------
+
+5. CREATE A SIGNED 'RELEASE' APK
+
+Under construction.
