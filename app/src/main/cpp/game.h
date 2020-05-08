@@ -17,7 +17,7 @@ private:
 	bool pendown = false;
 	int scrwidth = 1, scrheight = 1;
 	Surface screen;
-	GLuint pixels = -1, shader = -1;
+	GLuint pixels = -1, shader = -1, post = -1;
 	SoLoud::Soloud loud;
 	SoLoud::Wav sound;
 	Surface* bluePrint = 0;

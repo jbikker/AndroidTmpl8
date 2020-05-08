@@ -44,6 +44,7 @@ typedef unsigned int uint;
 
 FILE* android_fopen( const char* fname, const char* mode );
 GLuint LoadShader();
+GLuint PostprocShader();
 void DrawQuad( float u1 = 0, float v1 = 0, float u2 = 1, float v2 = 1 );
 GLuint CreateTexture( uint* pixels, int w, int h );
 GLuint LoadTexture( const char* fileName, uint** data = 0 );
@@ -63,7 +64,7 @@ public:
 			width = w, height = h;
 			buffer = new uint[w * h];
 			uchar* s = pixels.data();
-			for( uint i = 0; i < w * h; i++ ) buffer[i] = (s[i * 4 + 1] << 16) + (s[i * 4 + 2] << 8) + s[i * 4 + 3];
+			for( uint i = 0; i < w * h; i++ ) buffer[i] = (s[i * 4 + 0] << 16) + (s[i * 4 + 1] << 8) + s[i * 4 + 2];
 		}
 	}
 	Surface() = default;
