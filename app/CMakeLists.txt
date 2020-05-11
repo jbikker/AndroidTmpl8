@@ -16,6 +16,7 @@ set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -u ANativeActivity_o
 add_library(Tmpl8App SHARED
         src/main/cpp/template.cpp
         src/main/cpp/game.cpp
+		src/main/cpp/surface.cpp
         )
 
 target_link_libraries(Tmpl8App

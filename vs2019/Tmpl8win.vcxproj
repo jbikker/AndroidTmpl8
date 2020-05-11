@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>Tmpl8_2020-01</ProjectName>
+    <ProjectName>Tmpl8win</ProjectName>
     <ProjectGuid>{D8FE2186-4BF0-4B89-913F-6C26818E5AC5}</ProjectGuid>
     <RootNamespace>Tmpl8</RootNamespace>
     <Keyword>Win32Proj</Keyword>
@@ -184,10 +184,12 @@
     <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_robotizefilter.cpp" />
     <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_waveshaperfilter.cpp" />
     <ClCompile Include="..\app\src\main\cpp\game.cpp" />
+    <ClCompile Include="..\app\src\main\cpp\surface.cpp" />
     <ClCompile Include="..\app\src\main\cpp\template.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\app\src\main\cpp\game.h" />
+    <ClInclude Include="..\app\src\main\cpp\surface.h" />
     <ClInclude Include="..\app\src\main\cpp\template.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

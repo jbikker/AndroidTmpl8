@@ -197,10 +197,16 @@
     <ClCompile Include="..\app\src\lib\soloud\src\filter\soloud_waveshaperfilter.cpp">
       <Filter>template code\soloud</Filter>
     </ClCompile>
+    <ClCompile Include="..\app\src\main\cpp\surface.cpp">
+      <Filter>template code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\app\src\main\cpp\game.h" />
     <ClInclude Include="..\app\src\main\cpp\template.h">
+      <Filter>template code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\src\main\cpp\surface.h">
       <Filter>template code</Filter>
     </ClInclude>
   </ItemGroup>

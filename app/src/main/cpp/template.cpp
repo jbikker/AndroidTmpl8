@@ -7,8 +7,32 @@ typedef unsigned int uint;
 // namespace
 using namespace std;
 
-// game object
+// game objects
 static Game game;
+GLuint pixels = -1, shader = -1, basic = -1;
+
+// error reporting
+Surface* errorSurf = 0;
+GLuint errorPixels = -1;
+bool error = false;
+void FatalError( const char* err )
+{
+	if (error) return; // already displaying an error
+	// print the error to the error surface and display this from now on
+	error = true;
+	errorSurf->Clear( 0 );
+	int offs = 0, y = 1;
+	while (strlen( err + offs ) > 53)
+	{
+		char t[54];
+		memset( t, 0, 54 );
+		memcpy( t, err + offs, 53 );
+		errorSurf->Print( t, 1, y, 0xffffffff );
+		y += 8;
+		offs += 53;
+	}
+	errorSurf->Print( err + offs, 1, y, 0xffffffff );
+}
 
 // forward declarations
 bool LoadPNGFile( const char* fileName, uint& w, uint& h, vector<uchar>& image );
@@ -107,6 +131,7 @@ GLuint CompileShader( const char* vtext, const char* ftext )
 		GLchar errString[1025];
 		GLsizei length = 0;
 		glGetShaderInfoLog( pixel, 1024, &length, errString );
+		FatalError( errString );
 		compileStatus |= 2;
 	}
 	GLuint retVal = glCreateProgram();
@@ -122,18 +147,17 @@ GLuint CompileShader( const char* vtext, const char* ftext )
 GLuint PostprocShader()
 {
 #ifdef _WIN64
-	const char vsText[] =
-		"#version 330\nlayout(location=0)in vec3 pos;\nlayout(location=1)in vec2 uv;\n"
-		"out vec2 t;\nvoid main(){t=uv;gl_Position=vec4(pos,1);}";
+	const char vsText[] = "#version 330\nlayout(location=0)in vec3 pos;\nlayout(location=1)in "
+		"vec2 uv;\nout vec2 t;\nvoid main(){t=uv;gl_Position=vec4(pos,1);}";
 	char fsText[4096] = "#version 330\nuniform sampler2D C;\nin vec2 t;\nvec2 r=vec2(320,192);\n";
 #else
-	char vsText[] =
-		"attribute vec4 pos;\nattribute vec2 uv;\nvarying vec2 t; \n"
+	char vsText[] =	"attribute vec4 pos;\nattribute vec2 uv;\nvarying vec2 t; \n"
 		"void main(){gl_Position=pos;t=uv;}";
-	char fsText[4096] =
-		"precision mediump float;\nuniform sampler2D C;\nvarying vec2 t;\n"
+	char fsText[4096] =	"precision mediump float;\nuniform sampler2D C;\nvarying vec2 t;\n"
 		"const vec2 r=vec2(320,192);\n";
 #endif
+#ifdef _WIN64
+	// full version; expensive on mobile
 	char fsBody[] = // by Timothy Lottes, https://www.shadertoy.com/view/ls2SRD
 		"float ToLinear1(float c){return(c<=0.04045)?c/12.92:pow((c+0.055)/1.055,2.4);}vec3 ToL(vec"
 		"3 c){return vec3(ToLinear1(c.r),ToLinear1(c.g),ToLinear1(c.b));}float srgb1(float c){retur"
@@ -152,7 +176,36 @@ GLuint PostprocShader()
 		"7(p,0.)*S(p,0.)+H7(p,1.)*S(p,1.)+H5(p,2.)*S(p,2.))*1.25;}vec3 M(vec2 p){p.x+=p.y*3.;vec3 m"
 		"=vec3(0.65);p.x=fract(p.x/6.);if(p.x<.333)m.r=1.35;else if(p.x<0.666)m.g=1.35;else m.b=1.3"
 		"5;return m;}void main(){gl_FragColor=vec4(srgb(Tri(t)*M(t*vec2(1024,640))).bgr,1);}";
+#else
+	// my cheap approximation
+	char fsBody[] =
+		"vec3 M(vec2 p){p.x+=p.y*3.;vec3 m=vec3(0.8);p.x=fract(p.x/6.);if(p.x<.333)m.r=1.2;else if("
+		"p.x<0.666)m.g=1.2;else m.b=1.2;return m;}void main(){vec2 p=t*vec2(320,192);float o=abs(p."
+		"y-floor(p.y)-0.5);float s=min(1.,1./(3.*o+0.3));vec2 d=vec2(s/640.,0.);vec4 pl=texture2D(C"
+		",t-d),pr=texture2D(C,t+d),p0=texture2D(C,t);gl_FragColor=vec4((pl*0.25+p0*0.5+pr*0.25).bgr"
+		"*s*M(t*vec2(1024,640)),1);}";
+#endif
 	strcat( fsText, fsBody );
+	return CompileShader( vsText, fsText );
+}
+
+GLuint BasicShader()
+{
+#ifdef _WIN64
+	const char vsText[] =
+		"#version 330\nlayout(location=0)in vec3 pos;\nlayout(location=1)in vec2 uv;\n"
+		"out vec2 t;\nvoid main(){t=uv;gl_Position=vec4(pos,1);}";
+	char fsText[4096] = 
+		"#version 330\nuniform sampler2D C;\nin vec2 t;\n"
+		"void main(){gl_FragColor=texture2D(C,t);}";
+#else
+	char vsText[] =
+		"attribute vec4 pos;\nattribute vec2 uv;\nvarying vec2 t; \n"
+		"void main(){gl_Position=pos;t=uv;}";
+	char fsText[4096] =
+		"precision mediump float;\nuniform sampler2D C;\nvarying vec2 t;\n"
+		"void main(){gl_FragColor=texture2D(C,t);}";
+#endif
 	return CompileShader( vsText, fsText );
 }
 
@@ -218,7 +271,7 @@ void loadBinaryFile( vector<uchar>& buffer, const string& filename )
 	{
 		uint bytes = (uint)fread( t, 1, 1024, f );
 		for (uint i = 0; i < bytes; i++) buffer.push_back( t[i] );
-	}
+}
 	fclose( f );
 }
 
@@ -1026,6 +1079,50 @@ bool LoadPNGFile( const char* fileName, uint& w, uint& h, vector<uchar>& image )
 	return decodePNG( image, w, h, &buffer[0], (uint)buffer.size() ) == 0;
 }
 
+void TemplateInit()
+{
+	// opengl state
+	glEnable( GL_TEXTURE_2D );
+	glDisable( GL_DEPTH_TEST );
+	glDisable( GL_CULL_FACE );
+	glEnable( GL_BLEND );
+	glBlendFunc( GL_SRC_ALPHA, GL_ONE );
+	// game screen
+	game.screen = new Surface( 320, 192 );
+	errorSurf = new Surface( 320, 192 );
+	pixels = CreateTexture( game.screen->buffer, 320, 192 );
+	errorPixels = CreateTexture( errorSurf->buffer, 320, 192 );
+	shader = PostprocShader();
+	basic = BasicShader();
+	// initialize SoLoud
+	game.loud.init();
+}
+
+void PostTick()
+{
+	if (error)
+	{
+		// display the error surface
+		glUseProgram( basic );
+		glDisable( GL_BLEND );
+		glActiveTexture( GL_TEXTURE0 );
+		glBindTexture( GL_TEXTURE_2D, errorPixels );
+		glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, 320, 192, 0, GL_RGBA, GL_UNSIGNED_BYTE, errorSurf->buffer );
+
+	}
+	else
+	{
+		// render pixel buffer
+		glUseProgram( shader );
+		glDisable( GL_BLEND );
+		glActiveTexture( GL_TEXTURE0 );
+		glBindTexture( GL_TEXTURE_2D, pixels );
+		glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, 320, 192, 0, GL_RGBA, GL_UNSIGNED_BYTE, game.screen->buffer );
+	}
+	DrawQuad();
+	glEnable( GL_BLEND );
+}
+
 #ifdef _WIN64
 
 // internal vars
@@ -1060,6 +1157,7 @@ int WinMain( HINSTANCE inst, HINSTANCE prev, LPSTR cmd, int show )
 	// go to assets folder
 	_chdir( "../app/src/main/assets" );
 	// application initialization
+	TemplateInit();
 	game.SetScreenSize( nativeWidth, nativeHeight );
 	game.Init();
 	// application loop
@@ -1085,6 +1183,7 @@ int WinMain( HINSTANCE inst, HINSTANCE prev, LPSTR cmd, int show )
 		}
 		// tick
 		game.Tick( 0 /* for now */ );
+		PostTick();
 		// present
 		glfwSwapBuffers( window );
 		glfwPollEvents();
@@ -1203,6 +1302,7 @@ static void engine_draw_frame( struct engine* engine )
 {
 	if (engine->display == NULL) return;
 	game.Tick( 0 /* for now */ );
+	PostTick();
 	eglSwapBuffers( engine->display, engine->surface );
 }
 
@@ -1358,23 +1458,33 @@ static void engine_handle_cmd( struct android_app* app, int32_t cmd )
 		if (engine->app->window != NULL)
 		{
 			engine_init_display( engine );
+			TemplateInit();
 			game.Init();
 			engine_draw_frame( engine );
+			engine->animating = 1;
 		}
 		break;
 	case APP_CMD_TERM_WINDOW: // do things when the window is closed or hidden
 		engine_term_display( engine );
+		engine->animating = 0;
 		break;
 	case APP_CMD_GAINED_FOCUS: // do things when we gain focus
-		break;
-	case APP_CMD_RESUME:
 		androidApp->activity->vm->AttachCurrentThread( &jniEnv, NULL );
 		SetImmersiveMode( GetJniEnv(), androidApp );
-		/* mgr->OnResume(); */
+		engine->animating = 1;
 		break;
 	case APP_CMD_LOST_FOCUS:
 		engine->animating = 0;
-		engine_draw_frame( engine );
+		// engine_draw_frame( engine );
+		break;
+	case APP_CMD_PAUSE:
+		engine->animating = 0;
+		break;
+	case APP_CMD_RESUME:
+		androidApp->activity->vm->AttachCurrentThread( &jniEnv, NULL );
+		engine->animating = 1;
+		SetImmersiveMode( GetJniEnv(), androidApp );
+		/* mgr->OnResume(); */
 		break;
 	}
 }
@@ -1428,7 +1538,7 @@ void android_main( struct android_app* state )
 			}
 		}
 		if (engine.animating) engine_draw_frame( &engine );
-}
+	}
 }
 
 #endif

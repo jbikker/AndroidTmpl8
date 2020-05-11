@@ -12,13 +12,14 @@ public:
 	void PenDown() { pendown = true; }
 	void PenUp() { pendown = false; }
 	void SetScreenSize( const int w, const int h ) { scrwidth = w, scrheight = h; }
+public:
+	Surface* screen;
+	Soloud loud;
 private:
 	int cursorx = 0, cursory = 0;
 	bool pendown = false;
 	int scrwidth = 1, scrheight = 1;
-	Surface screen;
 	GLuint pixels = -1, shader = -1, post = -1;
-	SoLoud::Soloud loud;
 	SoLoud::Wav sound;
 	Surface* bluePrint = 0;
 };

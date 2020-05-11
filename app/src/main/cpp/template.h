@@ -22,6 +22,9 @@
 #define max(a,b) ((a)>(b)?(a):(b))
 #endif
 
+#define MALLOC64(x) _aligned_malloc(x,64)
+#define FREE64(x) _aligned_free(x)
+
 #else
 
 #include <jni.h>
@@ -36,11 +39,16 @@
 
 void android_fopen_set_asset_manager( AAssetManager* manager );
 
+#define MALLOC64(x) aligned_alloc(x,64)
+#define FREE64(x) aligned_free(x)
+
 #endif
 
 using namespace std;
+
 typedef unsigned char uchar;
 typedef unsigned int uint;
+typedef unsigned int Pixel;
 
 FILE* android_fopen( const char* fname, const char* mode );
 GLuint LoadShader();
@@ -52,62 +60,11 @@ void SetMagFilter( GLuint id, uint flag );
 void loadBinaryFile( std::vector<unsigned char>& buffer, const std::string& filename );
 bool LoadPNGFile( const char* fileName, uint& w, uint& h, vector<uchar>& image );
 
-class Surface
-{
-public:
-	Surface( const char* fileName )
-	{
-		vector<uchar> pixels;
-		uint w = 0, h = 0;
-		if (LoadPNGFile( fileName, w, h, pixels ))
-		{
-			width = w, height = h;
-			buffer = new uint[w * h];
-			uchar* s = pixels.data();
-			for( uint i = 0; i < w * h; i++ ) buffer[i] = (s[i * 4 + 0] << 16) + (s[i * 4 + 1] << 8) + s[i * 4 + 2];
-		}
-	}
-	Surface() = default;
-	Surface( int w, int h ) : width( w ), height( h )
-	{
-		buffer = new uint[w * h];
-	}
-	void Clear( uint c = 0 )
-	{
-		if (c == 0) memset( buffer, 0, width * height * 4 );
-		else
-		{
-			const uint s = width * height;
-			for( uint i = 0; i < s; i++ ) buffer[i] = c;
-		}
-	}
-	void CopyTo( Surface* dest, int x = 0, int y = 0 )
-	{
-		uint maxx = min( width, dest->width - x );
-		uint maxy = min( height, dest->height - y );
-		uint* d = dest->buffer + x + y * width, *s = buffer;
-		for( uint y = 0; y < maxy; y++, d += dest->width, s += width ) memcpy( d, s, maxx * 4 );
-	}
-	void HLine( int x, int y, int l, uint c )
-	{
-		uint* a = buffer + x + y * width;
-		for( int i = 0; i < l; i++ ) a[i] = c;
-	}
-	void VLine( int x, int y, int l, uint c )
-	{
-		uint* a = buffer + x + y * width;
-		for( int i = 0; i < l; i++, a += width ) *a = c;
-	}
-	void Plot( int x, int y, uint c )
-	{
-		buffer[x + y * width] = c;
-	}
-	uint* buffer = 0;
-	int width = 0, height = 0;
-};
-
+#include "surface.h"
 #include "soloud.h"
 #include "soloud_wav.h"
+
+using namespace SoLoud;
 
 #include "game.h"
 
