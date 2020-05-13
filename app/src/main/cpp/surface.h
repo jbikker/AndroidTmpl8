@@ -40,12 +40,7 @@ public:
 	Surface( int w, int h ) : width( w ), height( h ), buffer( new Pixel[w * h] ), flags( OWNER ) {}
 	Surface( char* file );
 	~Surface();
-	// member data access
-	Pixel* GetBuffer() { return buffer; }
-	void SetBuffer( Pixel* b ) { buffer = b; }
-	int GetWidth() { return width; }
-	int GetHeight() { return height; }
-	// Special operations
+	// public methods
 	void InitCharset();
 	void SetChar( int c, char* c1, char* c2, char* c3, char* c4, char* c5 );
 	void Centre( const char* s, int y1, Pixel color );
@@ -62,10 +57,15 @@ public:
 	void Box( int x1, int y1, int x2, int y2, Pixel color );
 	void Bar( int x1, int y1, int x2, int y2, Pixel color );
 	void Resize( Surface* orig );
-	// attributes
-	Pixel* buffer = 0;	
-	int width = 0, height = 0;
-	int flags;
+private:
+	// private methods
+	bool LoadPNGFile( const char* fileName, uint& w, uint& h, vector<uchar>& image );
+	int decodePNG( vector<uchar>& out_image, uint& image_width, uint& image_height, const uchar* in_png, size_t in_size, bool convert_to_rgba32 = true );
+public:
+	// public attributes
+	Pixel* buffer = 0;
+	int width = 0, height = 0, flags = 0;
+private:
 	// static attributes for the builtin font
 	inline static char font[51][5][6];
 	inline static bool fontInitialized = false;
@@ -78,18 +78,18 @@ public:
 	// Sprite flags
 	enum
 	{
-		FLARE		= (1<< 0),
-		OPFLARE		= (1<< 1),	
-		FLASH		= (1<< 4),	
-		DISABLED	= (1<< 6),	
-		GMUL		= (1<< 7),
-		BLACKFLARE	= (1<< 8),	
-		BRIGHTEST   = (1<< 9),
-		RFLARE		= (1<<12),
-		GFLARE		= (1<<13),
-		NOCLIP		= (1<<14)
+		FLARE = (1 << 0),
+		OPFLARE = (1 << 1),
+		FLASH = (1 << 4),
+		DISABLED = (1 << 6),
+		GMUL = (1 << 7),
+		BLACKFLARE = (1 << 8),
+		BRIGHTEST = (1 << 9),
+		RFLARE = (1 << 12),
+		GFLARE = (1 << 13),
+		NOCLIP = (1 << 14)
 	};
-	
+
 	// Structors
 	Sprite( Surface* surface, unsigned int frames );
 	~Sprite();
@@ -101,7 +101,7 @@ public:
 	unsigned int GetFlags() const { return flags; }
 	int GetWidth() { return width; }
 	int GetHeight() { return height; }
-	Pixel* GetBuffer() { return surface->GetBuffer(); }	
+	Pixel* GetBuffer() { return surface->buffer; }
 	unsigned int Frames() { return numFrames; }
 	Surface* GetSurface() { return surface; }
 private:
@@ -110,7 +110,7 @@ private:
 	// Attributes
 	int width = 0, height = 0, m_Pitch;
 	unsigned int numFrames = 1;
-	unsigned int currentFrame = 0;       
+	unsigned int currentFrame = 0;
 	unsigned int flags = 0;
 	unsigned int** start = 0;
 	Surface* surface = 0;
@@ -125,11 +125,11 @@ public:
 	void Print( Surface* target, char* text, int x, int y, bool clip = false );
 	void Centre( Surface* target, char* text, int y );
 	int Width( char* text );
-	int Height() { return surface->GetHeight(); }
+	int Height() { return surface->height; }
 	void YClip( int y1, int y2 ) { cy1 = y1; cy2 = y2; }
 private:
 	Surface* surface = 0;
-	int* offset = 0, *width = 0, *trans = 0, height, cy1, cy2;
+	int* offset = 0, * width = 0, * trans = 0, height, cy1, cy2;
 };
 
 #endif
