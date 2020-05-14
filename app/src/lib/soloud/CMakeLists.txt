@@ -1,3 +1,5 @@
+cmake_minimum_required(VERSION 3.4.1)
+
 add_definitions("-DWITH_OPENSLES")
 
 add_library(soloud STATIC

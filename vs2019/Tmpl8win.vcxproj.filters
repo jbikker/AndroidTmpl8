@@ -200,6 +200,189 @@
     <ClCompile Include="..\app\src\main\cpp\surface.cpp">
       <Filter>template code</Filter>
     </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\7zAlloc.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\7zArcIn.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\7zBuf.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\7zBuf2.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\7zCrc.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\7zCrcOpt.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\7zDec.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\7zFile.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\7zStream.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Aes.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\AesOpt.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Alloc.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Bcj2.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Bcj2Enc.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Bra.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Bra86.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\BraIA64.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\CpuArch.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Delta.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\DllSecur.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\LzFind.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\LzFindMt.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Lzma2Dec.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Lzma2DecMt.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Lzma2Enc.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Lzma86Dec.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Lzma86Enc.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\LzmaDec.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\LzmaEnc.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\LzmaLib.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\MtCoder.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\MtDec.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Ppmd7.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Ppmd7Dec.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Ppmd7Enc.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Sha256.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Sort.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Threads.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\Xz.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\XzCrc64.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\XzCrc64Opt.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\XzDec.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\XzEnc.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\7zip\XzIn.c">
+      <Filter>template code\7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\ujpg\ujpeg.c">
+      <Filter>template code\ujpg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\toojpg\toojpeg.cpp">
+      <Filter>template code\toojpg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\zlib\adler32.c">
+      <Filter>template code\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\zlib\compress.c">
+      <Filter>template code\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\zlib\crc32.c">
+      <Filter>template code\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\zlib\deflate.c">
+      <Filter>template code\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\zlib\gzclose.c">
+      <Filter>template code\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\zlib\gzlib.c">
+      <Filter>template code\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\zlib\gzread.c">
+      <Filter>template code\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\zlib\gzwrite.c">
+      <Filter>template code\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\zlib\infback.c">
+      <Filter>template code\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\zlib\inffast.c">
+      <Filter>template code\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\zlib\inflate.c">
+      <Filter>template code\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\zlib\inftrees.c">
+      <Filter>template code\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\zlib\trees.c">
+      <Filter>template code\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\zlib\uncompr.c">
+      <Filter>template code\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\src\lib\zlib\zutil.c">
+      <Filter>template code\zlib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\app\src\main\cpp\game.h" />
@@ -216,6 +399,18 @@
     </Filter>
     <Filter Include="template code\soloud">
       <UniqueIdentifier>{fffa2901-1398-482b-8351-45c3e8a72d18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="template code\zlib">
+      <UniqueIdentifier>{38410bb0-531a-4996-809b-d880d461f971}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="template code\7zip">
+      <UniqueIdentifier>{e3bb9117-a96e-4c2d-bc3b-592f885c5233}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="template code\toojpg">
+      <UniqueIdentifier>{c1114db5-73f8-4b91-a145-0924eb115f09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="template code\ujpg">
+      <UniqueIdentifier>{dd644d39-5df1-4feb-9352-d8b51cfe2720}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

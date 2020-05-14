@@ -1,0 +1,1 @@
+add_library(ujpg STATIC ujpeg.c)

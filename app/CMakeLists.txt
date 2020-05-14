@@ -10,8 +10,6 @@ target_include_directories(native_app_glue PUBLIC
 find_library(log-lib
         log)
 
-add_subdirectory(src/lib/soloud)
-
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -u ANativeActivity_onCreate")
 add_library(Tmpl8App SHARED
         src/main/cpp/template.cpp
@@ -19,12 +17,25 @@ add_library(Tmpl8App SHARED
 		src/main/cpp/surface.cpp
         )
 
+# Optional libraries to include in the build.
+# Also add each include lib in the target_link_libraries list below.
+add_subdirectory(src/lib/soloud)
+add_subdirectory(src/lib/7zip)
+add_subdirectory(src/lib/lua)
+add_subdirectory(src/lib/toojpg)
+add_subdirectory(src/lib/ujpg)
+add_subdirectory(src/lib/zlib)
+
 target_link_libraries(Tmpl8App
         ${log-lib}
         android
-	soloud
         native_app_glue
         EGL
         GLESv3
-        OpenSLES
-        mediandk)
+        OpenSLES		# required for SoLoud
+        soloud          # optional: SoLoud audio library
+        7zip            # optional: 7zip compression library
+		zlib            # optional: zlib compression library
+		lua  	        # optional: lua scripting
+		ujpg            # optional: jpeg import
+)
