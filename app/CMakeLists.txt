@@ -27,15 +27,15 @@ add_subdirectory(src/lib/ujpg)
 add_subdirectory(src/lib/zlib)
 
 target_link_libraries(Tmpl8App
-        ${log-lib}
-        android
-        native_app_glue
-        EGL
-        GLESv3
-        OpenSLES		# required for SoLoud
-        soloud          # optional: SoLoud audio library
-        7zip            # optional: 7zip compression library
-		zlib            # optional: zlib compression library
-		lua  	        # optional: lua scripting
-		ujpg            # optional: jpeg import
+	${log-lib}
+	android
+	native_app_glue
+	EGL
+	GLESv3
+	OpenSLES	# required for SoLoud
+	soloud		# optional: SoLoud audio library
+	7zip		# optional: 7zip compression library
+	zlib		# optional: zlib compression library
+	lua		# optional: lua scripting
+	ujpg		# optional: jpeg import
 )

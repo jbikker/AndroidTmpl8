@@ -47,7 +47,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>.;glad\include;..\app\src\main\cpp;glfw/include;glad/include;..\app\src\lib\soloud\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;glad\include;..\app\src\main\cpp;glfw/include;glad/include;..\app\src\lib\soloud\include;..\app\src\lib\zbar;..\app\src\lib\zbar\decoder;..\app\src\lib\zbar\qrcode;</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>precomp.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
