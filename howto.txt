@@ -10,7 +10,7 @@ while developing a native C/C++ application for Android. Index:
 
 ------------------------------------------------------------------------
 
-1. CLEANING THE PROJECT DIRECTORY
+1. CLEANING THE PROJECT DIRECTORY 
 
 After cleaning the project directory, it will contain the smallest
 set of files that will still correctly build in Android Studio. 
