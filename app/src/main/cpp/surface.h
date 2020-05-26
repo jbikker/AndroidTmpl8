@@ -38,7 +38,7 @@ public:
 	Surface() = default;
 	Surface( int w, int h, Pixel* b ) : width( w ), height( h ), buffer( b ) {}
 	Surface( int w, int h ) : width( w ), height( h ), buffer( new Pixel[w * h] ), flags( OWNER ) {}
-	Surface( char* file );
+	Surface( const char* file );
 	~Surface();
 	// public methods
 	void InitCharset();
@@ -50,7 +50,7 @@ public:
 	void HLine( int x1, int y1, int l, Pixel color );
 	void VLine( int x1, int y1, int l, Pixel color );
 	void Plot( int x, int y, Pixel c );
-	void LoadImage( char* file );
+	void LoadPNGImage( const char* file );
 	void CopyTo( Surface* dst, int x, int y );
 	void BlendCopyTo( Surface* dst, int x, int y );
 	void ScaleColor( unsigned int scale );

@@ -4,12 +4,12 @@
 // True-color surface class implementation
 // -----------------------------------------------------------
 
-Surface::Surface( char* file )
+Surface::Surface( const char* file )
 {
-	LoadImage( file );
+	LoadPNGImage( file );
 }
 
-void Surface::LoadImage( char* file )
+void Surface::LoadPNGImage( const char* file )
 {
 	vector<uchar> pixels;
 	uint w = 0, h = 0;
@@ -18,7 +18,7 @@ void Surface::LoadImage( char* file )
 		width = w, height = h;
 		buffer = new Pixel[w * h];
 		uchar* s = pixels.data();
-		for (uint i = 0; i < w * h; i++) buffer[i] = (s[i * 4 + 0] << 16) + (s[i * 4 + 1] << 8) + s[i * 4 + 2];
+		for (uint i = 0; i < w * h; i++) buffer[i] = (s[i * 4 + 0] << 16) + (s[i * 4 + 1] << 8) + s[i * 4 + 2] + (255 << 24);
 	}
 }
 

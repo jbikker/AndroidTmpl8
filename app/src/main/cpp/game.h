@@ -8,7 +8,7 @@ public:
 	void Init();
 	void Tick( const float deltaTime );
 	void Shutdown();
-	void SetPenPos( const int x, const int y ) { cursorx = x, cursory = y; }
+	void PenPos( const int x, const int y ) { cursorx = x, cursory = y; }
 	void PenDown() { pendown = true; }
 	void PenUp() { pendown = false; }
 	void SetScreenSize( const int w, const int h ) { scrwidth = w, scrheight = h; }

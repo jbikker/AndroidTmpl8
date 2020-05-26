@@ -164,6 +164,17 @@ GLuint PostprocShader()
 	return CompileShader( vsText, fsText );
 }
 
+GLuint LoadTexture( const char* fileName, uint** data = 0 )
+{
+	Surface t( fileName );
+	if (data)
+	{
+		*data = new uint[t.width * t.height];
+		memcpy( *data, t.buffer, t.width * t.height * 4 );
+	}
+	return CreateTexture( t.buffer, t.width, t.height );
+}
+
 GLuint BasicShader()
 {
 #ifdef _WIN64
@@ -250,6 +261,8 @@ void loadBinaryFile( vector<uchar>& buffer, const string& filename )
 	fclose( f );
 }
 
+int nativeWidth = 1024, nativeHeight = 640;
+
 void TemplateInit()
 {
 	// opengl state
@@ -299,7 +312,6 @@ void PostTick()
 // internal vars
 static bool ldown = false;
 GLFWwindow* window = 0;
-int nativeWidth = 1024, nativeHeight = 640;
 
 // window handle access
 HWND GetWindowHandle() { return glfwGetWin32Window( window ); }
@@ -340,7 +352,7 @@ int WinMain( HINSTANCE inst, HINSTANCE prev, LPSTR cmd, int show )
 		ScreenToClient( GetForegroundWindow(), &p );
 		if (GetForegroundWindow() == GetWindowHandle())
 		{
-			game.SetPenPos( p.x, p.y );
+			game.PenPos( p.x, p.y );
 			if (GetAsyncKeyState( VK_LBUTTON ))
 			{
 				if (!ldown) game.PenDown();
@@ -418,6 +430,8 @@ struct engine
 	saved_state state;
 };
 
+static struct android_app* theApp = 0; // for global access in this file
+
 static void engine_init_display( struct engine* engine )
 {
 	const EGLint attribs[] = { // from endless tunnel
@@ -447,6 +461,7 @@ static void engine_init_display( struct engine* engine )
 	engine->context = context;
 	engine->surface = surface;
 	engine->width = w, engine->height = h;
+	nativeWidth = w, nativeHeight = h;
 }
 
 static void engine_draw_frame( struct engine* engine )
@@ -455,6 +470,22 @@ static void engine_draw_frame( struct engine* engine )
 	game.Tick( 0 /* for now */ );
 	PostTick();
 	eglSwapBuffers( engine->display, engine->surface );
+}
+
+void engine_retrace()
+{
+	struct engine* engine = (struct engine*)theApp->userData;
+	if (engine->display == NULL) return;
+	struct android_poll_source* source;
+	int ident, events;
+	while ((ident = ALooper_pollAll( engine->animating ? 0 : -1, NULL, &events, (void**)&source )) >= 0) if (source != NULL) source->process( theApp, source );
+	eglSwapBuffers( engine->display, engine->surface );
+}
+
+void engine_swapinterval( uint i )
+{
+	struct engine* engine = (struct engine*)theApp->userData;
+	eglSwapInterval( engine->display, i );
 }
 
 static void engine_term_display( struct engine* engine )
@@ -487,6 +518,8 @@ static int32_t engine_handle_input( struct android_app* app, AInputEvent* event 
 
 static JNIEnv* jniEnv = 0;
 static android_app* androidApp;
+char* dcimdir_int = new char[2048]; // to be queried as external
+char* localdir = 0;
 
 bool SetImmersiveMode( JNIEnv* env, android_app* iandroid_app )
 {
@@ -606,9 +639,13 @@ static void GetDCIMPath( JNIEnv* env, android_app* app, const char* param, char*
 
 void android_main( struct android_app* state )
 {
+	theApp = state;
 	android_fopen_set_asset_manager( state->activity->assetManager );
 	androidApp = state;
 	SetImmersiveMode( GetJniEnv(), state );
+	GetDCIMPath( GetJniEnv(), state, "DIRECTORY_DCIM", dcimdir_int );
+	localdir = new char[strlen( state->activity->internalDataPath ) + 1];
+	strcpy( localdir, state->activity->internalDataPath );
 	struct engine engine;
 	memset( &engine, 0, sizeof( engine ) );
 	state->userData = &engine;
