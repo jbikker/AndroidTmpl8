@@ -510,7 +510,7 @@ static int32_t engine_handle_input( struct android_app* app, AInputEvent* event 
 	{
 		engine->state.x = AMotionEvent_getX( event, 0 );
 		engine->state.y = AMotionEvent_getY( event, 0 );
-		game.SetPenPos( engine->state.x, engine->state.y );
+		game.PenPos( engine->state.x, engine->state.y );
 		return 1;
 	}
 	return 0;
@@ -583,9 +583,7 @@ static void engine_handle_cmd( struct android_app* app, int32_t cmd )
 	switch (cmd)
 	{
 	case APP_CMD_SAVE_STATE: // save current state
-		engine->app->savedState = malloc( sizeof( struct saved_state ) );
-		*((struct saved_state*)engine->app->savedState) = engine->state;
-		engine->app->savedStateSize = sizeof( struct saved_state );
+	    game.SaveState( engine->app->savedState, engine->app->savedStateSize );
 		break;
 	case APP_CMD_INIT_WINDOW: // do things when the window becomes visible
 		if (engine->app->window != NULL)
@@ -652,7 +650,7 @@ void android_main( struct android_app* state )
 	state->onAppCmd = engine_handle_cmd;
 	state->onInputEvent = engine_handle_input;
 	engine.app = state;
-	if (state->savedState != NULL) engine.state = *(struct saved_state*)state->savedState;
+	if (state->savedState != NULL) game.RestoreState( state->savedState, state->savedStateSize );
 	engine.animating = 1;
 	while (1)
 	{

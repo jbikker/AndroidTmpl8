@@ -11,6 +11,8 @@ public:
 	void PenPos( const int x, const int y ) { cursorx = x, cursory = y; }
 	void PenDown() { pendown = true; }
 	void PenUp() { pendown = false; }
+	void SaveState( void* buffer, size_t& bufferSize ) { /* nothing here yet */ }
+	void RestoreState( void* buffer, size_t bufferSize ) { /* nothing here yet */ }
 	void SetScreenSize( const int w, const int h ) { scrwidth = w, scrheight = h; }
 public:
 	Surface* screen;
